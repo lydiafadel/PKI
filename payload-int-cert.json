@@ -1,0 +1,5 @@
+{
+  "csr": $(cat pki_intermediate.csr),
+  "format": "pem_bundle",
+  "ttl": "43800h"
+}

@@ -1,0 +1,4 @@
+{
+  "certificate": $(cat intermediate.cert.pem)
+}
+

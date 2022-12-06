@@ -1,0 +1,5 @@
+{
+  "common_name": "example.com",
+  "issuer_name": "root-2022",
+  "ttl": "87600h"
+}

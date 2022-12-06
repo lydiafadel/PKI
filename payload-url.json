@@ -1,0 +1,4 @@
+{
+  "issuing_certificates": "$VAULT_ADDR/v1/pki/ca",
+  "crl_distribution_points": "$VAULT_ADDR/v1/pki/crl"
+}
