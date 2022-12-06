@@ -1,0 +1,25 @@
+// CLI
+vault write pki_int/roles/example-dot-com \
+     issuer_ref="$(vault read -field=default pki_int/config/issuers)" \
+     allowed_domains="example.com" \
+     allow_subdomains=true \
+     max_ttl="720h"
+
+
+// API - Create an API request payload containing domain information to set.
+
+tee payload-role.json <<EOF
+{
+  "allowed_domains": "example.com",
+  "allow_subdomains": true,
+  "issuer_ref": "$(vault read -field=default pki_int/config/issuers)",
+  "max_ttl": "720h"
+}
+EOF
+
+// API - Create a role named example-dot-com which allows subdomains.
+curl --header "X-Vault-Token: $VAULT_TOKEN" \
+   --header "X-Vault-Namespace: $VAULT_NAMESPACE" \
+   --request POST \
+   --data @payload-role.json \
+   $VAULT_ADDR/v1/pki_int/roles/example-dot-com

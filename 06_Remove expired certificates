@@ -1,0 +1,11 @@
+// CLI - To revove revoked certificate and clean the CRL.
+
+vault write pki_int/tidy tidy_cert_store=true tidy_revoked_certs=true
+
+
+// API 
+curl --header "X-Vault-Token: $VAULT_TOKEN" \
+   --header "X-Vault-Namespace: $VAULT_NAMESPACE" \
+   --request POST \
+   --data '{"tidy_cert_store": true, "tidy_revoked_certs": true}' \
+   $VAULT_ADDR/v1/pki_int/tidy | jq

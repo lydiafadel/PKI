@@ -1,0 +1,11 @@
+// CLI - To revoke a certificate, execute the following command.
+vault write pki_int/revoke serial_number=<serial_number>
+
+
+
+// API - Invoke the /pki_int/revoke endpoint to invoke a certificate using its serial number.
+curl --header "X-Vault-Token: $VAULT_TOKEN" \
+   --header "X-Vault-Namespace: $VAULT_NAMESPACE" \
+   --request POST \
+   --data '{"serial_number": "<serial_number>"}' \
+   $VAULT_ADDR/v1/pki_int/revoke | jq

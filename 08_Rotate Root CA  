@@ -1,0 +1,19 @@
+
+// CLI - enable another root CA in the existing PKI secrets engine mount using the new rotate feature.
+
+vault write pki/root/rotate/internal \
+    common_name="example.com" \
+    issuer_name="root-2023"
+
+
+
+
+// API - Generate the new Root CA using the /pki/root/rotate/internal endpoint
+curl \
+    --silent \
+    --request PUT \
+    --header "X-Vault-Request: true" \
+    --header "X-Vault-Token: $(vault print token)" \
+    --data '{"common_name":"example.com","issuer_name":"root-2023"}' \
+    $VAULT_ADDR/v1/pki/root/rotate/internal \
+    | jq

@@ -1,0 +1,13 @@
+export VAULT_ADDR=http://localhost:8200
+export VAULT_TOKEN=""
+export VAULT_NAMESPACE=admin
+export VAULT_USER="lydia"
+export VAULT_PASSWORD=""
+
+#enable userpass to create an authentication method for creating and managing the certificates
+vault auth enable userpass
+
+#create a new username and password with the policy we created earlier
+vault write auth/userpass/users/${VAULT_USER} \
+    password=${VAULT_PASSWORD} \
+    token_policies="pki_int"
